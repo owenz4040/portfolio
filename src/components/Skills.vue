@@ -84,56 +84,60 @@
 
 <style scoped>
 .skills {
-  padding: 5rem 2rem;
-  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .section-title {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 2.8rem;
+  font-weight: 900;
   text-align: center;
-  margin-bottom: 3rem;
-  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  margin-bottom: 4rem;
+  background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -1px;
 }
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2.5rem;
 }
 
 .skill-category {
-  background: linear-gradient(135deg, rgba(96, 165, 250, 0.08) 0%, rgba(167, 139, 250, 0.08) 100%);
-  padding: 2rem;
-  border-radius: 1.5rem;
-  border: 1px solid rgba(96, 165, 250, 0.15);
-  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(107, 95, 255, 0.08) 100%);
+  padding: 2.3rem;
+  border-radius: 1.2rem;
+  border: 1.5px solid var(--accent-border);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
 }
 
 .skill-category:hover {
-  border-color: rgba(96, 165, 250, 0.4);
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(96, 165, 250, 0.2);
+  border-color: var(--primary-cyan);
+  transform: translateY(-12px);
+  box-shadow: 0 30px 80px rgba(0, 212, 255, 0.2);
 }
 
 .category-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 2.8rem;
+  margin-bottom: 1.2rem;
+  display: inline-block;
 }
 
 .skill-category h3 {
-  color: #e2e8f0;
+  color: var(--text-primary);
   font-size: 1.3rem;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
+  margin-bottom: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 .skill-list {
@@ -143,68 +147,75 @@
 }
 
 .skill-list li {
-  color: #cbd5e1;
-  margin-bottom: 0.8rem;
+  color: var(--text-tertiary);
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.9rem;
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .badge {
   display: inline-block;
-  padding: 0.3rem 0.8rem;
-  border-radius: 0.4rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: 0.6rem;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
-  background: rgba(96, 165, 250, 0.2);
-  color: #60a5fa;
-  border: 1px solid rgba(96, 165, 250, 0.3);
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--primary-cyan);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  letter-spacing: 0.3px;
 }
 
-.badge.java { background: rgba(244, 117, 0, 0.2); color: #f47500; border-color: rgba(244, 117, 0, 0.3); }
-.badge.python { background: rgba(53, 102, 165, 0.2); color: #3566a5; border-color: rgba(53, 102, 165, 0.3); }
-.badge.javascript { background: rgba(240, 193, 33, 0.2); color: #f0c121; border-color: rgba(240, 193, 33, 0.3); }
-.badge.flutter { background: rgba(0, 188, 212, 0.2); color: #00bcd4; border-color: rgba(0, 188, 212, 0.3); }
-.badge.visualbasic { background: rgba(0, 120, 215, 0.2); color: #0078d7; border-color: rgba(0, 120, 215, 0.3); }
-.badge.firebase { background: rgba(255, 193, 7, 0.2); color: #ffc107; border-color: rgba(255, 193, 7, 0.3); }
-.badge.mongodb { background: rgba(19, 194, 98, 0.2); color: #13c262; border-color: rgba(19, 194, 98, 0.3); }
-.badge.rest { background: rgba(100, 200, 255, 0.2); color: #64c8ff; border-color: rgba(100, 200, 255, 0.3); }
-.badge.vue { background: rgba(52, 211, 153, 0.2); color: #34d399; border-color: rgba(52, 211, 153, 0.3); }
-.badge.seo { background: rgba(167, 139, 250, 0.2); color: #a78bfa; border-color: rgba(167, 139, 250, 0.3); }
-.badge.pen { background: rgba(239, 68, 68, 0.2); color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
-.badge.net { background: rgba(96, 165, 250, 0.2); color: #60a5fa; border-color: rgba(96, 165, 250, 0.3); }
-.badge.vpn { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; border-color: rgba(139, 92, 246, 0.3); }
-.badge.encryption { background: rgba(244, 63, 94, 0.2); color: #f43f5e; border-color: rgba(244, 63, 94, 0.3); }
-.badge.security { background: rgba(20, 184, 166, 0.2); color: #14b8a6; border-color: rgba(20, 184, 166, 0.3); }
-.badge.arch { background: rgba(0, 188, 212, 0.2); color: #00bcd4; border-color: rgba(0, 188, 212, 0.3); }
-.badge.speech { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; border-color: rgba(139, 92, 246, 0.3); }
-.badge.detection { background: rgba(82, 82, 82, 0.2); color: #52525b; border-color: rgba(82, 82, 82, 0.3); }
-.badge.responsive { background: rgba(96, 165, 250, 0.2); color: #60a5fa; border-color: rgba(96, 165, 250, 0.3); }
-.badge.camera { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; border-color: rgba(139, 92, 246, 0.3); }
-.badge.yolo { background: rgba(244, 117, 0, 0.2); color: #f47500; border-color: rgba(244, 117, 0, 0.3); }
-.badge.flask { background: rgba(100, 100, 100, 0.2); color: #888888; border-color: rgba(100, 100, 100, 0.3); }
-.badge.realtime { background: rgba(239, 68, 68, 0.2); color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
-.badge.integration { background: rgba(167, 139, 250, 0.2); color: #a78bfa; border-color: rgba(167, 139, 250, 0.3); }
-.badge.ui { background: rgba(236, 72, 153, 0.2); color: #ec4899; border-color: rgba(236, 72, 153, 0.3); }
-.badge.automation { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border-color: rgba(59, 130, 246, 0.3); }
-.badge.validation { background: rgba(168, 85, 247, 0.2); color: #a855f7; border-color: rgba(168, 85, 247, 0.3); }
-.badge.performance { background: rgba(34, 197, 94, 0.2); color: #22c55e; border-color: rgba(34, 197, 94, 0.3); }
-.badge.creative { background: rgba(226, 232, 240, 0.2); color: #e2e8f0; border-color: rgba(226, 232, 240, 0.3); }
+.badge.java { background: rgba(244, 117, 0, 0.15); color: #ff9500; border-color: rgba(244, 117, 0, 0.3); }
+.badge.python { background: rgba(53, 102, 165, 0.15); color: #3b82f6; border-color: rgba(53, 102, 165, 0.3); }
+.badge.javascript { background: rgba(240, 193, 33, 0.15); color: #fbbf24; border-color: rgba(240, 193, 33, 0.3); }
+.badge.flutter { background: rgba(0, 188, 212, 0.15); color: #06b6d4; border-color: rgba(0, 188, 212, 0.3); }
+.badge.visualbasic { background: rgba(0, 120, 215, 0.15); color: #0ea5e9; border-color: rgba(0, 120, 215, 0.3); }
+.badge.firebase { background: rgba(255, 193, 7, 0.15); color: #fcd34d; border-color: rgba(255, 193, 7, 0.3); }
+.badge.mongodb { background: rgba(19, 194, 98, 0.15); color: #10b981; border-color: rgba(19, 194, 98, 0.3); }
+.badge.rest { background: rgba(100, 200, 255, 0.15); color: #00d4ff; border-color: rgba(100, 200, 255, 0.3); }
+.badge.vue { background: rgba(52, 211, 153, 0.15); color: #2dd4bf; border-color: rgba(52, 211, 153, 0.3); }
+.badge.seo { background: rgba(167, 139, 250, 0.15); color: #c084fc; border-color: rgba(167, 139, 250, 0.3); }
+.badge.pen { background: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.3); }
+.badge.net { background: rgba(96, 165, 250, 0.15); color: #00d4ff; border-color: rgba(96, 165, 250, 0.3); }
+.badge.vpn { background: rgba(139, 92, 246, 0.15); color: #c084fc; border-color: rgba(139, 92, 246, 0.3); }
+.badge.encryption { background: rgba(244, 63, 94, 0.15); color: #ff6b9d; border-color: rgba(244, 63, 94, 0.3); }
+.badge.security { background: rgba(20, 184, 166, 0.15); color: #14b8a6; border-color: rgba(20, 184, 166, 0.3); }
+.badge.arch { background: rgba(0, 188, 212, 0.15); color: #06b6d4; border-color: rgba(0, 188, 212, 0.3); }
+.badge.speech { background: rgba(139, 92, 246, 0.15); color: #c084fc; border-color: rgba(139, 92, 246, 0.3); }
+.badge.detection { background: rgba(168, 85, 247, 0.15); color: #d8b4fe; border-color: rgba(168, 85, 247, 0.3); }
+.badge.responsive { background: rgba(96, 165, 250, 0.15); color: #00d4ff; border-color: rgba(96, 165, 250, 0.3); }
+.badge.camera { background: rgba(139, 92, 246, 0.15); color: #c084fc; border-color: rgba(139, 92, 246, 0.3); }
+.badge.yolo { background: rgba(244, 117, 0, 0.15); color: #ff9500; border-color: rgba(244, 117, 0, 0.3); }
+.badge.flask { background: rgba(100, 100, 100, 0.15); color: #d1d5db; border-color: rgba(100, 100, 100, 0.3); }
+.badge.realtime { background: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.3); }
+.badge.integration { background: rgba(167, 139, 250, 0.15); color: #c084fc; border-color: rgba(167, 139, 250, 0.3); }
+.badge.ui { background: rgba(236, 72, 153, 0.15); color: #f472b6; border-color: rgba(236, 72, 153, 0.3); }
+.badge.automation { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border-color: rgba(59, 130, 246, 0.3); }
+.badge.validation { background: rgba(168, 85, 247, 0.15); color: #d8b4fe; border-color: rgba(168, 85, 247, 0.3); }
+.badge.performance { background: rgba(34, 197, 94, 0.15); color: #86efac; border-color: rgba(34, 197, 94, 0.3); }
+.badge.creative { background: rgba(226, 232, 240, 0.15); color: #e2e8f0; border-color: rgba(226, 232, 240, 0.3); }
 
 @media (max-width: 768px) {
   .skills {
-    padding: 3rem 1.5rem;
+    padding: 4rem 1.5rem;
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
   }
 
   .skills-grid {
     grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .skill-category {
+    padding: 1.8rem;
   }
 
   .skill-category h3 {

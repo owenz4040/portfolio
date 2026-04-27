@@ -38,59 +38,61 @@
 
 <style scoped>
 .education {
-  padding: 5rem 2rem;
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .section-title {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 2.8rem;
+  font-weight: 900;
   text-align: center;
-  margin-bottom: 3rem;
-  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  margin-bottom: 4rem;
+  background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -1px;
 }
 
 .education-content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .education-card {
-  background: linear-gradient(135deg, rgba(96, 165, 250, 0.08) 0%, rgba(167, 139, 250, 0.08) 100%);
-  border: 1px solid rgba(96, 165, 250, 0.15);
-  border-radius: 1.5rem;
-  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(107, 95, 255, 0.08) 100%);
+  border: 1.5px solid var(--accent-border);
+  border-radius: 1.2rem;
+  padding: 2.8rem;
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   align-items: flex-start;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
 }
 
 .education-card:hover {
-  border-color: rgba(96, 165, 250, 0.4);
-  transform: translateY(-5px);
-  box-shadow: 0 20px 50px rgba(96, 165, 250, 0.15);
+  border-color: var(--primary-cyan);
+  transform: translateY(-8px);
+  box-shadow: 0 30px 80px rgba(0, 212, 255, 0.2);
 }
 
 .education-card.main {
-  border-color: rgba(96, 165, 250, 0.3);
+  border-color: var(--accent-border);
 }
 
 .education-card.main:hover {
-  border-color: rgba(96, 165, 250, 0.6);
+  border-color: var(--primary-cyan);
 }
 
 .education-icon {
-  font-size: 3rem;
+  font-size: 3.5rem;
   flex-shrink: 0;
 }
 
@@ -99,59 +101,65 @@
 }
 
 .education-body h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #e2e8f0;
-  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 0.7rem 0;
+  letter-spacing: -0.5px;
 }
 
 .institution {
-  color: #60a5fa;
-  font-weight: 600;
-  margin: 0.5rem 0;
-  font-size: 1rem;
+  color: var(--primary-cyan);
+  font-weight: 700;
+  margin: 0.6rem 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
 }
 
 .year {
-  color: #94a3b8;
+  color: var(--text-muted);
   font-size: 0.9rem;
-  margin: 0.5rem 0 1rem 0;
+  margin: 0.6rem 0 1.2rem 0;
   font-style: italic;
+  font-weight: 600;
 }
 
 .description {
-  color: #cbd5e1;
-  line-height: 1.7;
+  color: var(--text-tertiary);
+  line-height: 1.8;
   margin: 0;
   font-size: 0.95rem;
+  letter-spacing: 0.3px;
 }
 
 @media (max-width: 768px) {
   .education {
-    padding: 3rem 1.5rem;
+    padding: 4rem 1.5rem;
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
   }
 
   .education-card {
     flex-direction: column;
     text-align: center;
-    padding: 2rem;
+    padding: 2.2rem;
+    gap: 1.8rem;
   }
 
   .education-icon {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin: 0 auto;
   }
 
   .institution {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .education-body h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 }
 </style>

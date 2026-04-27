@@ -56,7 +56,7 @@
 <style scoped>
 .contact {
   padding: 6rem 2rem;
-  background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+  background: linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -68,7 +68,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
 }
 
 .contact::after {
@@ -76,11 +76,11 @@
   position: absolute;
   bottom: -50%;
   left: -10%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(107, 95, 255, 0.12) 0%, transparent 70%);
   border-radius: 50%;
-  animation: float-slow 8s ease-in-out infinite;
+  animation: float-slow 18s ease-in-out infinite;
 }
 
 @keyframes float-slow {
@@ -89,121 +89,133 @@
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
 }
 
 .section-title {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 2.8rem;
+  font-weight: 900;
   text-align: center;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  margin-bottom: 1.8rem;
+  background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -1px;
 }
 
 .contact-intro {
   text-align: center;
-  color: #cbd5e1;
+  color: var(--text-tertiary);
   font-size: 1.1rem;
   line-height: 1.8;
-  margin-bottom: 3.5rem;
-  max-width: 600px;
+  margin-bottom: 4rem;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  letter-spacing: 0.3px;
 }
 
 .contact-methods {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3.5rem;
 }
 
 .contact-card {
-  background: linear-gradient(135deg, rgba(96, 165, 250, 0.08) 0%, rgba(167, 139, 250, 0.08) 100%);
-  border: 1px solid rgba(96, 165, 250, 0.15);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(107, 95, 255, 0.08) 100%);
+  border: 1.5px solid var(--accent-border);
   border-radius: 1.2rem;
-  padding: 2rem;
+  padding: 2.2rem;
   text-align: center;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
+  backdrop-filter: blur(10px);
 }
 
 .contact-card:hover {
-  border-color: rgba(96, 165, 250, 0.4);
-  transform: translateY(-10px);
-  box-shadow: 0 25px 60px rgba(96, 165, 250, 0.15);
-  background: linear-gradient(135deg, rgba(96, 165, 250, 0.12) 0%, rgba(167, 139, 250, 0.12) 100%);
+  border-color: var(--primary-cyan);
+  transform: translateY(-12px);
+  box-shadow: 0 30px 80px rgba(0, 212, 255, 0.25);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.12) 0%, rgba(107, 95, 255, 0.12) 100%);
 }
 
 .contact-icon {
-  font-size: 2.8rem;
+  font-size: 3rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-icon-img {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   display: inline-block;
   object-fit: contain;
+  filter: brightness(1.1);
 }
 
 .contact-card h3 {
-  color: #e2e8f0;
-  font-size: 1.15rem;
-  margin: 0 0 0.3rem 0;
-  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 .contact-card p {
-  color: #94a3b8;
-  font-size: 0.85rem;
-  margin: 0 0 0.8rem 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.6;
 }
 
 .contact-link {
-  color: #60a5fa;
-  font-size: 0.9rem;
-  font-weight: 600;
+  color: var(--primary-cyan);
+  font-size: 0.95rem;
+  font-weight: 700;
   display: inline-block;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.3px;
 }
 
 .contact-card:hover .contact-link {
-  color: #a78bfa;
-  transform: translateX(3px);
+  color: var(--primary-blue);
+  transform: translateX(4px);
 }
 
 .contact-cta {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 }
 
 .btn-primary-large {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  background: var(--accent-gradient);
   color: white;
-  padding: 1.1rem 3rem;
-  border-radius: 0.6rem;
+  padding: 1.2rem 3.5rem;
+  border-radius: 0.8rem;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   text-decoration: none;
-  transition: all 0.3s ease;
-  border: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--primary-cyan);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
-  box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
+  gap: 1rem;
+  box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
   position: relative;
   overflow: hidden;
+  letter-spacing: 0.5px;
 }
 
 .btn-primary-large::before {
@@ -213,8 +225,8 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-text {
@@ -225,7 +237,7 @@
 .btn-icon {
   position: relative;
   z-index: 2;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary-large:hover::before {
@@ -233,40 +245,40 @@
 }
 
 .btn-primary-large:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 55px rgba(59, 130, 246, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 25px 70px rgba(0, 212, 255, 0.5);
 }
 
 .btn-primary-large:hover .btn-icon {
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
 @media (max-width: 768px) {
   .contact {
-    padding: 3rem 1.5rem;
+    padding: 4rem 1.5rem;
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .contact-intro {
     font-size: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
 
   .contact-methods {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .contact-card {
-    padding: 1.5rem;
+    padding: 1.8rem;
   }
 
   .btn-primary-large {
-    padding: 0.9rem 2rem;
-    font-size: 0.9rem;
+    padding: 1rem 2.2rem;
+    font-size: 0.95rem;
   }
 }
 

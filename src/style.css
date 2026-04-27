@@ -5,21 +5,38 @@
 }
 
 :root {
-  --primary-gradient: linear-gradient(135deg, #405DE6 0%, #833AB4 25%, #FD1D1D 50%, #F77737 75%, #FCAF45 100%);
-  --instagram-pink: #E4405F;
-  --instagram-purple: #833AB4;
-  --instagram-blue: #405DE6;
-  --instagram-orange: #FD1D1D;
-  --instagram-yellow: #FCAF45;
+  /* Modern gradient palette */
+  --primary-gradient: linear-gradient(135deg, #00d4ff 0%, #0099ff 25%, #6b5fff 50%, #ff0080 75%, #ff6b6b 100%);
+  --accent-gradient: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+  --warm-gradient: linear-gradient(135deg, #ff6b6b 0%, #ffa366 100%);
+  --purple-gradient: linear-gradient(135deg, #6b5fff 0%, #9d4edd 100%);
   
-  --dark-bg: #0a0a0a;
-  --darker-bg: #000000;
-  --card-bg: rgba(255, 255, 255, 0.05);
+  /* Primary colors */
+  --primary-cyan: #00d4ff;
+  --primary-blue: #0099ff;
+  --primary-purple: #6b5fff;
+  --primary-pink: #ff0080;
+  --primary-red: #ff6b6b;
+  
+  /* Backgrounds */
+  --dark-bg: #0a0e27;
+  --darker-bg: #050812;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --card-bg-hover: rgba(255, 255, 255, 0.12);
+  --surface-bg: rgba(15, 23, 42, 0.4);
+  
+  /* Text colors */
   --text-primary: #ffffff;
-  --text-secondary: #e5e5e5;
-  --text-muted: #a8a8a8;
+  --text-secondary: #e0e7ff;
+  --text-tertiary: #cbd5e1;
+  --text-muted: #94a3b8;
+  
+  /* Accent colors */
+  --accent-glow: rgba(0, 212, 255, 0.2);
+  --accent-border: rgba(0, 212, 255, 0.3);
 
-  --sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  /* Fonts */
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --mono: 'Fira Code', 'Courier New', monospace;
 
   font-family: var(--sans);
@@ -32,6 +49,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.3px;
 }
 
 html {
@@ -50,45 +68,46 @@ body {
 }
 
 h1, h2, h3 {
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
 }
 
 h1 {
   font-size: 3.5rem;
-  font-weight: 800;
+  font-weight: 900;
   color: var(--text-primary);
 }
 
 h2 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 800;
   color: var(--text-primary);
 }
 
 h3 {
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
 p {
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
 }
 
 a {
-  color: #60a5fa;
+  color: var(--primary-cyan);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 a:hover {
-  color: #a78bfa;
+  color: var(--primary-blue);
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -96,17 +115,18 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(96, 165, 250, 0.3);
-  border-radius: 5px;
+  background: linear-gradient(180deg, var(--primary-cyan), var(--primary-purple));
+  border-radius: 6px;
+  border: 3px solid var(--dark-bg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(96, 165, 250, 0.5);
+  background: linear-gradient(180deg, var(--primary-blue), var(--primary-pink));
 }
 
 /* Selection styling */
 ::selection {
-  background: rgba(96, 165, 250, 0.3);
+  background: rgba(0, 212, 255, 0.4);
   color: var(--text-primary);
 }
 
@@ -121,7 +141,7 @@ a:hover {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -132,7 +152,7 @@ a:hover {
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-40px);
   }
   to {
     opacity: 1;
@@ -143,11 +163,47 @@ a:hover {
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(40px);
   }
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes float-up {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
