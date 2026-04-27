@@ -1,54 +1,7 @@
 <template>
   <section id="featured" class="featured">
     <div class="featured-container">
-      <div class="featured-badge">⭐ FEATURED PROJECT</div>
-      <h2 class="featured-title">Comrades WiFi</h2>
-      <p class="featured-tagline">Fast, Affordable, and Reliable Internet For Students & Professionals</p>
-
       <div class="featured-grid">
-        <div class="featured-content">
-          <p class="featured-role">
-            <span class="badge-role">👨‍💻 Creator & Active Developer</span>
-          </p>
-          <p class="featured-description">
-            I designed and built Comrades WiFi from scratch, and I continue to work on this project as a live, 
-            production internet service platform. This is a full-stack application serving Kenya with blazing-fast 
-            connectivity, affordable pricing starting at KSh 999/month, and exceptional 24/7 customer support.
-          </p>
-          <p class="featured-description secondary">
-            Currently serving 10k+ happy customers across 50+ coverage areas with 99.9% network uptime. 
-            This project has been my opportunity to solve real-world problems in digital infrastructure 
-            while working with a real user base.
-          </p>
-
-          <div class="featured-highlights">
-            <div class="highlight">
-              <div class="highlight-icon">⚡</div>
-              <h4>Full-Stack Built</h4>
-              <p>Entire platform designed & developed</p>
-            </div>
-            <div class="highlight">
-              <div class="highlight-icon">📈</div>
-              <h4>Live & Growing</h4>
-              <p>10k+ active customers using daily</p>
-            </div>
-            <div class="highlight">
-              <div class="highlight-icon">🛡️</div>
-              <h4>99.9% Uptime</h4>
-              <p>Production-grade reliability</p>
-            </div>
-          </div>
-
-          <div class="featured-cta">
-            <a href="https://comradeswifi.net" target="_blank" rel="noopener" class="btn btn-featured-primary">
-              Visit Live Website ↗
-            </a>
-            <a href="https://comradeswifi.net/plans" target="_blank" rel="noopener" class="btn btn-featured-secondary">
-              View Plans
-            </a>
-          </div>
-        </div>
-
         <div class="featured-visual">
           <div class="featured-card" @click="openWebsite">
             <div class="card-header">
@@ -163,25 +116,10 @@ const openWebsite = () => {
 
 .featured-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 4rem;
   align-items: center;
   margin-bottom: 2rem;
-}
-
-.featured-content {
-  animation: slideInLeft 0.8s ease-out;
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 .featured-description {

@@ -8,25 +8,33 @@
       </p>
       <div class="contact-methods">
         <a href="mailto:owenzcolin@gmail.com" class="contact-card">
-          <div class="contact-icon">✉️</div>
+          <div class="contact-icon">
+            <img src="/icons/email.svg" alt="Email" class="contact-icon-img" />
+          </div>
           <h3>Email</h3>
           <p>Send me a message</p>
           <span class="contact-link">owenzcolin@gmail.com</span>
         </a>
         <a href="https://linkedin.com/in/OwenCmn" class="contact-card" target="_blank" rel="noopener">
-          <div class="contact-icon">💼</div>
+          <div class="contact-icon">
+            <img src="/icons/linkedin.svg" alt="LinkedIn" class="contact-icon-img" />
+          </div>
           <h3>LinkedIn</h3>
           <p>Connect professionally</p>
           <span class="contact-link">View Profile →</span>
         </a>
         <a href="https://github.com/owenz4040" class="contact-card" target="_blank" rel="noopener">
-          <div class="contact-icon">👨‍💻</div>
+          <div class="contact-icon">
+            <img src="/icons/github.svg" alt="GitHub" class="contact-icon-img" />
+          </div>
           <h3>GitHub</h3>
           <p>Check my code</p>
           <span class="contact-link">View Repos →</span>
         </a>
         <a href="https://twitter.com/CmnOwen" class="contact-card" target="_blank" rel="noopener">
-          <div class="contact-icon">𝕏</div>
+          <div class="contact-icon">
+            <img src="/icons/x.svg" alt="X" class="contact-icon-img" />
+          </div>
           <h3>Twitter</h3>
           <p>Follow my journey</p>
           <span class="contact-link">@CmnOwen</span>
@@ -138,6 +146,13 @@
 
 .contact-icon {
   font-size: 2.8rem;
+}
+
+.contact-icon-img {
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  object-fit: contain;
 }
 
 .contact-card h3 {

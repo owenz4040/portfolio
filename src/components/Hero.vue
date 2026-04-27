@@ -30,7 +30,7 @@
         </p>
         
         <p class="hero-description">
-          CS graduate from Catholic University of Eastern Kenya with expertise in web development, mobile apps, cybersecurity, and AI/ML. Transforming ideas into elegant digital experiences.
+          Computer Science graduate from Catholic University of Eastern Kenya with expertise in web development, mobile apps, cybersecurity, and AI/ML. Transforming ideas into elegant digital experiences.
         </p>
 
         <div class="hero-stats">
@@ -55,25 +55,16 @@
 
         <div class="social-links">
           <a href="https://github.com/owenz4040" target="_blank" rel="noopener" class="social-icon" title="GitHub">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.41 1.02.01 2.04.14 3 .41 2.29-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v 3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
+            <img src="/icons/github.svg" alt="GitHub" class="social-icon-img" />
           </a>
           <a href="https://linkedin.com/in/OwenCmn" target="_blank" rel="noopener" class="social-icon" title="LinkedIn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.48-2.24-1.99-2.24-1.08 0-1.72.73-2 1.44-.1.25-.13 1-.13 1.76v4.6h-3.55V9.9h3.55v1.27h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v4.42zM5.34 9.43c-1.14 0-2.06-.93-2.06-2.07 0-1.14.92-2.06 2.06-2.06 1.14 0 2.06.92 2.06 2.06 0 1.14-.92 2.07-2.06 2.07zm1.78 10.02H3.56V9.91h3.56v9.54zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.77-.77 1.77-1.73V1.73c0-.96-.79-1.73-1.77-1.73z"/>
-            </svg>
+            <img src="/icons/linkedin.svg" alt="LinkedIn" class="social-icon-img" />
           </a>
           <a href="https://twitter.com/CmnOwen" target="_blank" rel="noopener" class="social-icon" title="Twitter">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M23.95 4.57c.88-.51 1.56-1.32 1.88-2.29-.82.49-1.73.84-2.68 1.03-.77-.82-1.87-1.33-3.08-1.33-2.33 0-4.22 1.89-4.22 4.22 0 .33.04.66.13.98-3.51-.18-6.62-1.86-8.7-4.41-.36.62-.57 1.34-.57 2.1 0 1.47.75 2.76 1.88 3.52-.7-.02-1.37-.21-1.95-.52v.05c0 2.05 1.46 3.76 3.4 4.15-.35.1-.73.15-1.11.15-.27 0-.54-.03-.8-.08.54 1.67 2.1 2.88 3.94 2.91-1.45 1.14-3.28 1.81-5.27 1.81-.34 0-.68-.02-1.02-.06 1.88 1.21 4.12 1.91 6.52 1.91 7.83 0 12.11-6.48 12.11-12.11 0-.18 0-.37-.01-.56.83-.6 1.55-1.35 2.11-2.21z"/>
-            </svg>
+            <img src="/icons/x.svg" alt="X" class="social-icon-img" />
           </a>
           <a href="mailto:owenzcolin@gmail.com" class="social-icon" title="Email">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="M22 6l-10 5-10-5"/>
-            </svg>
+            <img src="/icons/email.svg" alt="Email" class="social-icon-img" />
           </a>
         </div>
       </div>
@@ -415,6 +406,13 @@
 .social-icon svg {
   width: 20px;
   height: 20px;
+}
+
+.social-icon-img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
 }
 
 .scroll-indicator {
