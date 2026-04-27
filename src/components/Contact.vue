@@ -56,6 +56,8 @@
 <style scoped>
 .contact {
   padding: 6rem 2rem;
+  /* ensure anchor links don't get hidden behind the fixed navbar */
+  scroll-margin-top: calc(var(--navbar-height) + 12px);
   background: linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
   position: relative;
   overflow: hidden;
