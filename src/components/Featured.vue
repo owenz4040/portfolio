@@ -1,43 +1,12 @@
 <template>
   <section id="featured" class="featured">
     <div class="featured-container">
-      <div class="featured-grid">
-        <div class="featured-visual">
-          <div class="featured-card" @click="openWebsite">
-            <div class="card-header">
-              <div class="card-icon">🌐</div>
-              <span class="card-badge">LIVE</span>
-            </div>
-            <div class="card-content">
-              <h3>Internet Plans</h3>
-              <div class="plan-item">
-                <span class="plan-speed">5 Mbps</span>
-                <span class="plan-price">KSh 999</span>
-              </div>
-              <div class="plan-item">
-                <span class="plan-speed">10 Mbps</span>
-                <span class="plan-price">KSh 1,399</span>
-              </div>
-              <div class="plan-item">
-                <span class="plan-speed">20 Mbps</span>
-                <span class="plan-price">KSh 2,199</span>
-              </div>
-              <a href="https://comradeswifi.net" class="view-plans" target="_blank" rel="noopener">
-                Click to Visit Website →
-              </a>
-            </div>
-            <div class="card-glow"></div>
-          </div>
-        </div>
-      </div>
+      <div class="featured-grid"></div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-const openWebsite = () => {
-  window.open('https://comradeswifi.net', '_blank')
-}
 </script>
 
 <style scoped>
@@ -341,28 +310,12 @@ const openWebsite = () => {
   margin: 0 0 1.5rem 0;
 }
 
-.plan-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(96, 165, 250, 0.1);
-  color: #cbd5e1;
+.card-subtitle {
+  margin: -0.6rem 0 1.2rem 0;
+  color: #94a3b8;
+  line-height: 1.6;
 }
 
-.plan-item:last-of-type {
-  border-bottom: none;
-}
-
-.plan-speed {
-  font-weight: 600;
-}
-
-.plan-price {
-  color: #60a5fa;
-  font-weight: 700;
-  font-size: 1.05rem;
-}
 
 .view-plans {
   display: inline-block;
