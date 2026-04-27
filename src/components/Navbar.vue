@@ -53,7 +53,10 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   background: transparent;
-  padding: 1.5rem 2rem;
+  padding: 0 2rem; /* horizontal padding only - height controlled by --navbar-height */
+  min-height: var(--navbar-height);
+  display: flex;
+  align-items: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   backdrop-filter: blur(0px);
@@ -63,7 +66,9 @@ onUnmounted(() => {
   background: linear-gradient(180deg, rgba(10, 14, 39, 0.98) 0%, rgba(10, 14, 39, 0.95) 100%);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--accent-border);
-  padding: 0.75rem 2rem;
+  /* maintain same min-height when scrolled */
+  min-height: var(--navbar-height);
+  padding: 0 2rem;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 

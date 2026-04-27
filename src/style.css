@@ -34,6 +34,8 @@
   /* Accent colors */
   --accent-glow: rgba(0, 212, 255, 0.2);
   --accent-border: rgba(0, 212, 255, 0.3);
+  /* Layout metrics */
+  --navbar-height: 88px;
 
   /* Fonts */
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;

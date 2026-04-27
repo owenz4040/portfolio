@@ -90,7 +90,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem 2rem 2rem 2rem;
+  padding: calc(var(--navbar-height) + 2rem) 2rem 2rem 2rem;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, var(--dark-bg) 0%, rgba(15, 23, 42, 0.8) 50%, var(--darker-bg) 100%);
@@ -462,7 +462,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: 6rem 1.5rem 2rem 1.5rem;
+    padding: calc(var(--navbar-height) + 1.5rem) 1.5rem 2rem 1.5rem;
   }
 
   .hero-container {
