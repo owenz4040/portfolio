@@ -110,21 +110,18 @@ const projects = [
   },
   {
     id: 5,
-    title: "Rental House Booking System",
+    title: "Rental Management Website",
     icon: "🏠",
-    description: "Full-stack rental house booking platform with Instagram-inspired design, MongoDB database, Flask backend, and Cloudinary image hosting for seamless property management.",
+    description: "Live rental management website for browsing and managing rental properties with a modern UI and smooth user flows.",
     features: [
-      "Instagram-inspired gradient UI design",
-      "Admin authentication with JWT tokens",
-      "Complete CRUD operations for properties",
-      "Multiple image upload with preview",
-      "Real-time feedback with toast notifications",
-      "MongoDB Atlas database integration",
-      "Cloudinary cloud storage",
+      "Live deployed frontend on Render",
+      "Property browsing and listing UI",
+      "Admin access panel experience",
+      "Responsive design for mobile and desktop",
     ],
-    tags: ["Web", "Full-Stack"],
-    tech: ["Flask", "MongoDB", "JavaScript", "Cloudinary", "JWT"],
-    link: "https://github.com/owenz4040/Rental_System"
+    tags: ["Web", "Full-Stack", "Live"],
+    tech: ["Vue 3", "Vite", "Render"],
+    link: "https://cynthia-frontend.onrender.com"
   },
   {
     id: 6,
