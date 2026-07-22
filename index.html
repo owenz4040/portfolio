@@ -30,7 +30,20 @@
     <title>Colin Owen — Notes on code, security &amp; AI</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- Fallback shown only if the app never mounts (JS blocked/failed on the
+           network). Vue replaces it on successful mount. Inline styles so it
+           shows even if the stylesheet is blocked too. -->
+      <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; text-align: center; font-family: Georgia, 'Times New Roman', serif; background: #fbfaf7; color: #1d1b18;">
+        <div>
+          <div style="font-size: 1.5rem; font-weight: 600;">Colin Owen</div>
+          <div style="margin-top: 0.5rem; color: #8b877e; font-family: Arial, sans-serif;">Loading the blog&hellip;</div>
+          <div style="margin-top: 1.25rem; max-width: 22rem; font-size: 0.85rem; line-height: 1.5; color: #b23a1f; font-family: Arial, sans-serif;">
+            If this message stays on screen, this network may be blocking part of the site. Try mobile data or a different Wi-Fi network.
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
