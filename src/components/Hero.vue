@@ -6,7 +6,7 @@
 
     <div class="container hero-grid">
       <div class="intro">
-        <span class="eyebrow">Personal blog · est. 2025</span>
+        <span class="eyebrow">Personal blog · est. 2026</span>
 
         <h1 class="headline">
           Hi, I'm Colin.<br />

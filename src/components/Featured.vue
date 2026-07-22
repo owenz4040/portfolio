@@ -27,7 +27,7 @@
           <div class="meta">
             <span class="tag">Web Development</span>
             <span class="dot">·</span>
-            <span>Jul 2025</span>
+            <span>Jul 2026</span>
             <span class="dot">·</span>
             <span>8 min read</span>
           </div>

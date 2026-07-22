@@ -36,7 +36,7 @@
       </div>
 
       <div class="bottom">
-        <p>© 2025 Colin Owen Mutwiri Nyaga. All rights reserved.</p>
+        <p>© 2026 Colin Owen Mutwiri Nyaga. All rights reserved.</p>
         <p>Built with Vue.js &amp; a lot of coffee.</p>
       </div>
     </div>

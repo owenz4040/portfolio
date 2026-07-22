@@ -93,7 +93,7 @@ const posts: Post[] = [
   {
     title: 'Comrades WiFi — an ISP platform, in development',
     category: 'Web',
-    date: 'Jul 2025',
+    date: 'Jul 2026',
     read: '8 min read',
     excerpt: 'My flagship: an ISP platform for Kenya with an AI support chatbot and a Vue 3 front end. Actively being built and refined — a work in progress.',
     img: u('1558494949-ef010cbdcc31'),
@@ -104,7 +104,7 @@ const posts: Post[] = [
   {
     title: 'Breach — a browser game you can play right now',
     category: 'Games',
-    date: 'Jul 2025',
+    date: 'Jul 2026',
     read: 'Playable',
     excerpt: 'I build games too. Breach is a hacker-vs-firewall grid duel against an AI version of me — jump in and try to reach the core. More games coming to my Play Store channel soon.',
     img: u('1511512578047-dfb367046420'),
@@ -115,7 +115,7 @@ const posts: Post[] = [
   {
     title: 'Real-time object detection with YOLOv8 and Flutter',
     category: 'AI / ML',
-    date: 'Jun 2025',
+    date: 'Jun 2026',
     read: '9 min read',
     excerpt: 'Wiring a low-latency computer-vision pipeline to a responsive mobile UI so the camera can describe the world in real time.',
     img: u('1526374965328-7f61d4dc18c5'),
@@ -124,7 +124,7 @@ const posts: Post[] = [
   {
     title: 'Turning a YOLOv8 model into a scalable Flask API',
     category: 'AI / ML',
-    date: 'May 2025',
+    date: 'May 2026',
     read: '7 min read',
     excerpt: 'From a research notebook to a REST backend: batching, image handling, and keeping response times honest under load.',
     img: u('1518770660439-4636190af475'),
@@ -133,7 +133,7 @@ const posts: Post[] = [
   {
     title: 'A live rental platform, shipped on Render',
     category: 'Web',
-    date: 'May 2025',
+    date: 'May 2026',
     read: '6 min read',
     excerpt: 'Building and deploying a property-management front end with clean flows, an admin panel, and a responsive layout.',
     img: u('1488590528505-98d2b5aba04b'),
@@ -143,7 +143,7 @@ const posts: Post[] = [
   {
     title: 'Content moderation & analytics: my final-year project',
     category: 'AI / ML',
-    date: 'Apr 2025',
+    date: 'Apr 2026',
     read: '11 min read',
     excerpt: 'A capstone in real-time monitoring — analysing content, visualising signals, and supporting multiple languages.',
     img: u('1451187580459-43490279c0fa'),
@@ -153,7 +153,7 @@ const posts: Post[] = [
   {
     title: 'Building a church management system in Flutter',
     category: 'Mobile',
-    date: 'Mar 2025',
+    date: 'Mar 2026',
     read: '8 min read',
     excerpt: 'Role-based access, real-time attendance and email auth for a real congregation — and the data model that held it together.',
     img: u('1512941937669-90a1b58e7e9c'),
@@ -162,7 +162,7 @@ const posts: Post[] = [
   {
     title: 'Designing an accessible voice assistant',
     category: 'Mobile',
-    date: 'Feb 2025',
+    date: 'Feb 2026',
     read: '6 min read',
     excerpt: 'Speech-to-text navigation built accessibility-first, so visually impaired users can move through an app by voice.',
     img: u('1504384308090-c894fdcc538d'),
@@ -171,7 +171,7 @@ const posts: Post[] = [
   {
     title: 'A routing & navigation backend with TomTom',
     category: 'Security & Systems',
-    date: 'Jan 2025',
+    date: 'Jan 2026',
     read: '7 min read',
     excerpt: 'Real-time tracking, route calculation and distance measurement — the server work behind turn-by-turn voice navigation.',
     img: u('1558494949-ef010cbdcc31'),
