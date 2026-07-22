@@ -1,20 +1,20 @@
 <template>
-  <header class="navbar" :class="{ 'navbar-scrolled': isScrolled }">
-    <div class="navbar-container">
-      <div class="navbar-logo">
-        <img src="/images/profilephoto.jpeg" alt="Colin Owen Mutwiri Nyaga" class="logo-avatar" />
-        <span class="logo-text">Colin O.M.N</span>
-      </div>
-      <nav class="navbar-menu">
-        <a href="#home" class="nav-link" @click="scrollTo">Home</a>
-        <a href="#about" class="nav-link" @click="scrollTo">About</a>
-        <a href="#featured" class="nav-link" @click="scrollTo">Featured</a>
-        <a href="#projects" class="nav-link" @click="scrollTo">Projects</a>
-        <a href="#contact" class="nav-link" @click="scrollTo">Contact</a>
+  <header class="nav" :class="{ solid: isScrolled }">
+    <div class="progress" :style="{ transform: `scaleX(${progress})` }" aria-hidden="true"></div>
+    <div class="nav-inner">
+      <a href="#home" class="brand" @click="scrollTo">
+        <span class="brand-mark">CO</span>
+        <span class="brand-name">Colin Owen</span>
+      </a>
+
+      <nav class="links">
+        <a href="#writing" class="link" @click="scrollTo">Writing</a>
+        <a href="#topics" class="link" @click="scrollTo">Topics</a>
+        <a href="#about" class="link" @click="scrollTo">About</a>
+        <a href="#newsletter" class="link" @click="scrollTo">Newsletter</a>
       </nav>
-      <div class="navbar-cta">
-        <a href="#contact" class="btn-small">Get In Touch</a>
-      </div>
+
+      <a href="#contact" class="say-hi" @click="scrollTo">Say hello</a>
     </div>
   </header>
 </template>
@@ -23,167 +23,136 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const isScrolled = ref(false)
+const progress = ref(0)
 
-const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50
+const onScroll = () => {
+  isScrolled.value = window.scrollY > 30
+  const h = document.documentElement
+  const max = h.scrollHeight - h.clientHeight
+  progress.value = max > 0 ? Math.min(window.scrollY / max, 1) : 0
 }
 
 const scrollTo = (e: Event) => {
   e.preventDefault()
-  const target = (e.target as HTMLAnchorElement).getAttribute('href')
-  if (target) {
-    const element = document.querySelector(target)
-    element?.scrollIntoView({ behavior: 'smooth' })
-  }
+  const target = (e.currentTarget as HTMLAnchorElement).getAttribute('href')
+  if (target) document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' })
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
 })
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <style scoped>
-.navbar {
+.nav {
   position: fixed;
-  top: 0;
+  top: var(--banner-h);
   left: 0;
   right: 0;
-  background: transparent;
-  padding: 0 2rem; /* horizontal padding only - height controlled by --navbar-height */
-  min-height: var(--navbar-height);
-  display: flex;
-  align-items: center;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: var(--nav-h);
   z-index: 1000;
-  backdrop-filter: blur(0px);
+  display: flex;
+  align-items: center;
+  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.nav.solid {
+  background: rgba(251, 250, 247, 0.86);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--line);
+  box-shadow: var(--shadow-sm);
 }
 
-.navbar-scrolled {
-  background: linear-gradient(180deg, rgba(10, 14, 39, 0.98) 0%, rgba(10, 14, 39, 0.95) 100%);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--accent-border);
-  /* maintain same min-height when scrolled */
-  min-height: var(--navbar-height);
-  padding: 0 2rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+.progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
 }
 
-.navbar-container {
-  max-width: 1400px;
+.nav-inner {
+  max-width: var(--maxw);
+  width: 100%;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-logo {
+  padding: 0 clamp(1.2rem, 4vw, 2.5rem);
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  font-weight: 800;
-  font-size: 1.3rem;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 2rem;
 }
 
-.navbar-logo:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  transition: transform 0.3s var(--ease);
 }
-
-.logo-avatar {
-  width: 40px;
-  height: 40px;
+.brand:hover { transform: translateX(1px); }
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--accent-border);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.navbar-logo:hover .logo-avatar {
-  border-color: var(--primary-cyan);
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-}
-
-.navbar-menu {
-  display: flex;
-  gap: 3rem;
-  align-items: center;
-}
-
-.nav-link {
-  color: var(--text-tertiary);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--serif);
   font-weight: 600;
   font-size: 0.95rem;
-  text-decoration: none;
+}
+.brand-name {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.links {
+  margin-left: auto;
+  display: flex;
+  gap: 1.9rem;
+}
+.link {
+  font-size: 0.96rem;
+  font-weight: 500;
+  color: var(--ink-soft);
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: 0.5px;
+  transition: color 0.25s var(--ease);
 }
-
-.nav-link:hover {
-  color: var(--primary-cyan);
-}
-
-.nav-link::after {
+.link::after {
   content: '';
   position: absolute;
-  bottom: -6px;
   left: 0;
-  width: 0;
+  bottom: -5px;
   height: 2px;
-  background: var(--accent-gradient);
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0;
+  background: var(--accent);
+  transition: width 0.3s var(--ease);
 }
+.link:hover { color: var(--ink); }
+.link:hover::after { width: 100%; }
 
-.nav-link:hover::after {
-  width: 100%;
+.say-hi {
+  padding: 0.55rem 1.2rem;
+  border-radius: 100px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--paper);
+  background: var(--accent);
+  transition: transform 0.25s var(--ease), background 0.25s var(--ease);
 }
+.say-hi:hover { transform: translateY(-2px); background: var(--accent-deep); }
 
-.btn-small {
-  background: var(--accent-gradient);
-  color: white;
-  padding: 0.7rem 1.8rem;
-  border-radius: 0.6rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-block;
-  border: 1px solid transparent;
-  letter-spacing: 0.5px;
+@media (max-width: 780px) {
+  .links { display: none; }
+  .say-hi { margin-left: auto; }
 }
-
-.btn-small:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
-  border-color: var(--primary-cyan);
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1rem;
-  }
-
-  .navbar-menu {
-    display: none;
-  }
-
-  .navbar-logo {
-    font-size: 1rem;
-  }
-
-  .logo-avatar {
-    width: 36px;
-    height: 36px;
-  }
+@media (max-width: 420px) {
+  .brand-name { display: none; }
 }
 </style>

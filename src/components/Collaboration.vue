@@ -1,150 +1,91 @@
 <template>
-  <section id="collaboration" class="collaboration">
+  <section id="newsletter" class="collab section">
     <div class="container">
-      <h2 class="section-title">Let's Collaborate</h2>
-      <p class="collaboration-intro">
-        Tell me about your project or collaboration idea. Whether you need a web developer, mobile app creator, or technical consultant, let's explore how we can work together.
-      </p>
-      
-      <div class="form-container">
-        <form @submit.prevent="submitForm" class="collaboration-form">
-          <!-- Name -->
-          <div class="form-group">
-            <label for="name" class="form-label">Your Name *</label>
-            <input 
-              type="text" 
-              id="name" 
-              v-model="form.name" 
-              placeholder="John Doe"
-              required
-              class="form-input"
-            />
-          </div>
+      <div class="shell" v-reveal>
+        <div class="pitch">
+          <span class="eyebrow">Let's talk</span>
+          <h2 class="section-title">Have a project in mind?</h2>
+          <p>
+            Tell me about it. Whether you need a web developer, a mobile app, or a technical
+            partner to think it through — send a few details and I'll reply within 24 hours.
+          </p>
+          <ul class="perks">
+            <li>Full-stack web &amp; mobile builds</li>
+            <li>AI/ML integration &amp; backends</li>
+            <li>Consulting, mentorship &amp; redesigns</li>
+          </ul>
+        </div>
 
-          <!-- Email -->
-          <div class="form-group">
-            <label for="email" class="form-label">Email Address *</label>
-            <input 
-              type="email" 
-              id="email" 
-              v-model="form.email" 
-              placeholder="john@example.com"
-              required
-              class="form-input"
-            />
+        <form @submit.prevent="submitForm" class="form">
+          <div class="fg">
+            <label for="name">Your name *</label>
+            <input id="name" v-model="form.name" type="text" placeholder="Jane Doe" required />
           </div>
-
-          <!-- Company/Organization -->
-          <div class="form-group">
-            <label for="company" class="form-label">Company/Organization</label>
-            <input 
-              type="text" 
-              id="company" 
-              v-model="form.company" 
-              placeholder="Your company name"
-              class="form-input"
-            />
+          <div class="fg">
+            <label for="email">Email *</label>
+            <input id="email" v-model="form.email" type="email" placeholder="jane@example.com" required />
           </div>
-
-          <!-- Collaboration Type -->
-          <div class="form-group">
-            <label for="collaborationType" class="form-label">Type of Collaboration *</label>
-            <select 
-              id="collaborationType" 
-              v-model="form.collaborationType" 
-              required
-              class="form-input"
-            >
-              <option value="">Select collaboration type</option>
+          <div class="fg">
+            <label for="company">Company / organization</label>
+            <input id="company" v-model="form.company" type="text" placeholder="Optional" />
+          </div>
+          <div class="fg">
+            <label for="collaborationType">Type of work *</label>
+            <select id="collaborationType" v-model="form.collaborationType" required>
+              <option value="">Select…</option>
               <option value="Web Development">Web Development</option>
               <option value="Mobile Development">Mobile Development</option>
               <option value="Backend Development">Backend Development</option>
               <option value="Full Stack">Full Stack Project</option>
               <option value="AI/ML Integration">AI/ML Integration</option>
               <option value="Consulting">Technical Consulting</option>
-              <option value="Mentorship">Mentorship/Training</option>
-              <option value="Partnership">Partnership/Business</option>
+              <option value="Mentorship">Mentorship / Training</option>
+              <option value="Partnership">Partnership / Business</option>
               <option value="Other">Other</option>
             </select>
           </div>
-
-          <!-- Project Description -->
-          <div class="form-group">
-            <label for="projectDescription" class="form-label">Project Description *</label>
-            <textarea 
-              id="projectDescription" 
-              v-model="form.projectDescription" 
-              placeholder="Describe what you're looking to build or collaborate on..."
-              rows="5"
-              required
-              class="form-input textarea"
-            ></textarea>
+          <div class="fg full">
+            <label for="projectDescription">Project description *</label>
+            <textarea id="projectDescription" v-model="form.projectDescription" rows="4"
+              placeholder="What are you looking to build?" required></textarea>
           </div>
-
-          <!-- Timeline -->
-          <div class="form-group">
-            <label for="timeline" class="form-label">Timeline *</label>
-            <select 
-              id="timeline" 
-              v-model="form.timeline" 
-              required
-              class="form-input"
-            >
-              <option value="">Select timeline</option>
-              <option value="ASAP">ASAP (Start immediately)</option>
-              <option value="1-2 weeks">1-2 weeks</option>
+          <div class="fg">
+            <label for="timeline">Timeline *</label>
+            <select id="timeline" v-model="form.timeline" required>
+              <option value="">Select…</option>
+              <option value="ASAP">ASAP</option>
+              <option value="1-2 weeks">1–2 weeks</option>
               <option value="1 month">Around 1 month</option>
-              <option value="2-3 months">2-3 months</option>
+              <option value="2-3 months">2–3 months</option>
               <option value="3+ months">3+ months / Flexible</option>
             </select>
           </div>
-
-          <!-- Budget Range -->
-          <div class="form-group">
-            <label for="budget" class="form-label">Budget Range (Optional)</label>
-            <select 
-              id="budget" 
-              v-model="form.budget"
-              class="form-input"
-            >
+          <div class="fg">
+            <label for="budget">Budget (optional)</label>
+            <select id="budget" v-model="form.budget">
               <option value="">Not specified</option>
               <option value="< KSH 50,000">Less than KSH 50,000</option>
-              <option value="KSH 50,000 - KSH 150,000">KSH 50,000 - KSH 150,000</option>
-              <option value="KSH 150,000 - KSH 200,000">KSH 150,000 - KSH 200,000</option>
-              <option value="KSH 200,000 - KSH 300,000">KSH 200,000 - KSH 300,000</option>
-              <option value="KSH 300,000 - KSH 500,000">KSH 300,000 - KSH 500,00０</option>
+              <option value="KSH 50,000 - KSH 150,000">KSH 50,000 – 150,000</option>
+              <option value="KSH 150,000 - KSH 200,000">KSH 150,000 – 200,000</option>
+              <option value="KSH 200,000 - KSH 300,000">KSH 200,000 – 300,000</option>
+              <option value="KSH 300,000 - KSH 500,000">KSH 300,000 – 500,000</option>
             </select>
           </div>
-
-          <!-- Additional Notes -->
-          <div class="form-group">
-            <label for="notes" class="form-label">Additional Notes</label>
-            <textarea 
-              id="notes" 
-              v-model="form.notes" 
-              placeholder="Anything else you'd like to share..."
-              rows="3"
-              class="form-input textarea"
-            ></textarea>
+          <div class="fg full">
+            <label for="notes">Anything else</label>
+            <textarea id="notes" v-model="form.notes" rows="2" placeholder="Optional notes"></textarea>
           </div>
 
-          <!-- Submit Button -->
-          <button type="submit" class="submit-btn" :disabled="isSubmitting">
-            <span v-if="!isSubmitting" class="btn-text">Send Collaboration Request</span>
-            <span v-else class="btn-text">Sending...</span>
-            <span class="btn-icon">→</span>
+          <button type="submit" class="btn btn-primary submit" :disabled="isSubmitting">
+            <span v-if="!isSubmitting">Send message</span>
+            <span v-else>Sending…</span>
           </button>
 
-          <!-- Success Message -->
-          <div v-if="submitSuccess" class="success-message">
-            <span class="success-icon">✓</span>
-            Thank you! I've received your collaboration request. I'll get back to you within 24 hours.
+          <div v-if="submitSuccess" class="msg ok">
+            <span>✓</span> Thank you! I've got your message and will reply within 24 hours.
           </div>
-
-          <!-- Error Message -->
-          <div v-if="submitError" class="error-message">
-            <span class="error-icon">✕</span>
-            {{ submitError }}
+          <div v-if="submitError" class="msg err">
+            <span>!</span> {{ submitError }}
           </div>
         </form>
       </div>
@@ -182,7 +123,6 @@ const submitForm = async () => {
   submitSuccess.value = false
 
   try {
-    // Send email using EmailJS
     await emailjs.send(
       'YOUR_SERVICE_ID_HERE', // Replace with your Service ID
       'YOUR_TEMPLATE_ID_HERE', // Replace with your Template ID
@@ -201,26 +141,14 @@ const submitForm = async () => {
     )
 
     submitSuccess.value = true
-    
-    // Reset form
     form.value = {
-      name: '',
-      email: '',
-      company: '',
-      collaborationType: '',
-      projectDescription: '',
-      timeline: '',
-      budget: '',
-      notes: '',
+      name: '', email: '', company: '', collaborationType: '',
+      projectDescription: '', timeline: '', budget: '', notes: '',
     }
-
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-      submitSuccess.value = false
-    }, 5000)
+    setTimeout(() => { submitSuccess.value = false }, 5000)
   } catch (error) {
     console.error('Email error:', error)
-    submitError.value = 'Failed to send email. Please try again or email me directly at owenzcolin@gmail.com'
+    submitError.value = 'Failed to send. Please email me directly at owenzcolin@gmail.com'
   } finally {
     isSubmitting.value = false
   }
@@ -228,239 +156,109 @@ const submitForm = async () => {
 </script>
 
 <style scoped>
-.collaboration {
-  padding: 6rem 2rem;
-  background: linear-gradient(180deg, #0a0e27 0%, #0f172a 100%);
-  position: relative;
-  overflow: hidden;
-}
+.collab { background: var(--paper-2); }
 
-.collaboration::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.5), transparent);
-}
-
-.collaboration::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: float-reverse 10s ease-in-out infinite;
-}
-
-@keyframes float-reverse {
-  0%, 100% { transform: translateY(0px) translateX(0px); }
-  50% { transform: translateY(50px) translateX(30px); }
-}
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.collaboration-intro {
-  text-align: center;
-  color: #cbd5e1;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: 3rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.form-container {
-  background: linear-gradient(135deg, rgba(96, 165, 250, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%);
-  border: 1px solid rgba(96, 165, 250, 0.1);
-  border-radius: 1.5rem;
-  padding: 2.5rem;
-  backdrop-filter: blur(10px);
-}
-
-.collaboration-form {
+.shell {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.8rem, 4vw, 3.2rem);
+  box-shadow: var(--shadow-md);
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.pitch p { font-size: 1.05rem; line-height: 1.7; margin: 1rem 0 1.4rem; }
+.perks { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.perks li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+.perks li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
-.form-group:has(textarea) {
-  grid-column: 1 / -1;
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
+.fg { display: flex; flex-direction: column; gap: 0.4rem; }
+.fg.full { grid-column: 1 / -1; }
 
-.form-label {
-  color: #e2e8f0;
+label {
+  font-size: 0.84rem;
   font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.3px;
+  color: var(--ink-soft);
 }
-
-.form-input {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.6) 100%);
-  border: 1px solid rgba(96, 165, 250, 0.2);
-  border-radius: 0.8rem;
-  padding: 0.8rem 1rem;
-  color: #e2e8f0;
-  font-size: 0.95rem;
+input, select, textarea {
   font-family: inherit;
-  transition: all 0.3s ease;
+  font-size: 0.96rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.85rem;
   outline: none;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
 }
-
-.form-input::placeholder {
-  color: #64748b;
+input::placeholder, textarea::placeholder { color: var(--muted); }
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
-
-.form-input:focus {
-  border-color: rgba(96, 165, 250, 0.5);
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
-}
-
-.form-input.textarea {
-  resize: vertical;
-  min-height: 80px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-select.form-input {
+textarea { resize: vertical; }
+select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2360a5fa' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23d6482b' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 1rem center;
-  padding-right: 2.5rem;
+  background-position: right 0.85rem center;
+  padding-right: 2.2rem;
 }
 
-.submit-btn {
+.submit { grid-column: 1 / -1; margin-top: 0.3rem; }
+
+.msg {
   grid-column: 1 / -1;
-  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
-  color: white;
-  border: none;
-  border-radius: 0.8rem;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 35px rgba(96, 165, 250, 0.3);
-}
-
-.submit-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.btn-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-icon {
-  font-size: 1.2rem;
-}
-
-.success-message,
-.error-message {
-  grid-column: 1 / -1;
-  padding: 1rem 1.5rem;
-  border-radius: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  gap: 0.7rem;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-sm);
   font-weight: 500;
-  animation: slideIn 0.4s ease;
+  font-size: 0.95rem;
+  animation: fadeUp 0.35s ease;
 }
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.msg span {
+  display: grid;
+  place-items: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
 }
+.msg.ok { background: rgba(23, 163, 92, 0.12); color: #0f7a43; }
+.msg.ok span { background: #17a35c; color: #fff; }
+.msg.err { background: var(--accent-soft); color: var(--accent-deep); }
+.msg.err span { background: var(--accent); color: #fff; }
 
-.success-message {
-  background: rgba(34, 197, 94, 0.15);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  color: #86efac;
+@media (max-width: 860px) {
+  .shell { grid-template-columns: 1fr; }
 }
-
-.error-message {
-  background: rgba(239, 68, 68, 0.15);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #fca5a5;
-}
-
-.success-icon {
-  font-size: 1.2rem;
-}
-
-.error-icon {
-  font-size: 1.2rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .collaboration {
-    padding: 4rem 1.5rem;
-  }
-
-  .form-container {
-    padding: 1.5rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .collaboration-form {
-    grid-template-columns: 1fr;
-  }
-
-  .form-group:has(textarea) {
-    grid-column: 1;
-  }
+@media (max-width: 520px) {
+  .form { grid-template-columns: 1fr; }
 }
 </style>

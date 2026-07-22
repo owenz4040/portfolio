@@ -1,31 +1,27 @@
 <template>
-  <section class="education">
+  <section id="credentials" class="credentials section">
     <div class="container">
-      <h2 class="section-title">Education & Certifications</h2>
-      <div class="education-content">
-        <div class="education-card main">
-          <div class="education-icon">🎓</div>
-          <div class="education-body">
-            <h3>Bachelor of Science in Computer Science</h3>
-            <p class="institution">Catholic University of Eastern Kenya, Nairobi</p>
-            <p class="year">Graduated: 2025</p>
-            <p class="description">
-              Completed comprehensive computer science curriculum with focus on software development, 
-              systems design, and emerging technologies.
-            </p>
-          </div>
-        </div>
+      <div class="head" v-reveal>
+        <span class="eyebrow">Background</span>
+        <h2 class="section-title">Education &amp; certifications</h2>
+      </div>
 
-        <div class="education-card cert">
-          <div class="education-icon">🔐</div>
-          <div class="education-body">
-            <h3>(ISC)² Certified in Cybersecurity (CC)</h3>
-            <p class="institution">International Information System Security Certification Consortium</p>
-            <p class="year">Currently Pursuing</p>
-            <p class="description">
-              Advancing expertise in security fundamentals, risk management, and information security 
-              practices across domains.
-            </p>
+      <div class="timeline">
+        <div
+          v-for="(item, i) in items"
+          :key="item.title"
+          class="entry"
+          v-reveal="{ delay: i * 100 }"
+        >
+          <div class="marker"><span></span></div>
+          <div class="card">
+            <div class="card-top">
+              <span class="year">{{ item.year }}</span>
+              <span class="status" :class="item.state">{{ item.status }}</span>
+            </div>
+            <h3>{{ item.title }}</h3>
+            <p class="org">{{ item.org }}</p>
+            <p class="desc">{{ item.desc }}</p>
           </div>
         </div>
       </div>
@@ -34,132 +30,103 @@
 </template>
 
 <script setup lang="ts">
+const items = [
+  {
+    year: '2025',
+    status: 'Completed',
+    state: 'done',
+    title: 'BSc, Computer Science',
+    org: 'Catholic University of Eastern Kenya, Nairobi',
+    desc: 'A comprehensive CS curriculum with a focus on software development, systems design and emerging technologies.',
+  },
+  {
+    year: 'In progress',
+    status: 'Pursuing',
+    state: 'progress',
+    title: '(ISC)² Certified in Cybersecurity (CC)',
+    org: 'International Information System Security Certification Consortium',
+    desc: 'Deepening my expertise in security fundamentals, risk management and information-security practice across domains.',
+  },
+]
 </script>
 
 <style scoped>
-.education {
-  padding: 6rem 2rem;
-  background: linear-gradient(180deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+.credentials { background: var(--paper); }
+.head { margin-bottom: 2.8rem; }
+
+.timeline {
+  position: relative;
+  max-width: 760px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--line));
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+.entry {
+  position: relative;
+  padding-left: 3.4rem;
+  margin-bottom: 1.6rem;
+}
+.marker {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--accent);
+  display: grid;
+  place-items: center;
+}
+.marker span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
-.section-title {
-  font-size: 2.8rem;
-  font-weight: 900;
-  text-align: center;
-  margin-bottom: 4rem;
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -1px;
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.8rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
+.card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
 
-.education-content {
+.card-top {
   display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
 }
-
-.education-card {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(107, 95, 255, 0.08) 100%);
-  border: 1.5px solid var(--accent-border);
-  border-radius: 1.2rem;
-  padding: 2.8rem;
-  display: flex;
-  gap: 2.5rem;
-  align-items: flex-start;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-}
-
-.education-card:hover {
-  border-color: var(--primary-cyan);
-  transform: translateY(-8px);
-  box-shadow: 0 30px 80px rgba(0, 212, 255, 0.2);
-}
-
-.education-card.main {
-  border-color: var(--accent-border);
-}
-
-.education-card.main:hover {
-  border-color: var(--primary-cyan);
-}
-
-.education-icon {
-  font-size: 3.5rem;
-  flex-shrink: 0;
-}
-
-.education-body {
-  flex-grow: 1;
-}
-
-.education-body h3 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin: 0 0 0.7rem 0;
-  letter-spacing: -0.5px;
-}
-
-.institution {
-  color: var(--primary-cyan);
-  font-weight: 700;
-  margin: 0.6rem 0;
-  font-size: 1.05rem;
-  letter-spacing: 0.3px;
-}
-
 .year {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin: 0.6rem 0 1.2rem 0;
-  font-style: italic;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
-
-.description {
-  color: var(--text-tertiary);
-  line-height: 1.8;
-  margin: 0;
-  font-size: 0.95rem;
-  letter-spacing: 0.3px;
+.status {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.65rem;
+  border-radius: 100px;
 }
+.status.done { background: rgba(23, 163, 92, 0.14); color: #128a4c; }
+.status.progress { background: var(--accent-soft); color: var(--accent-deep); }
 
-@media (max-width: 768px) {
-  .education {
-    padding: 4rem 1.5rem;
-  }
-
-  .section-title {
-    font-size: 2.2rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .education-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 2.2rem;
-    gap: 1.8rem;
-  }
-
-  .education-icon {
-    font-size: 3rem;
-    margin: 0 auto;
-  }
-
-  .institution {
-    font-size: 1rem;
-  }
-
-  .education-body h3 {
-    font-size: 1.3rem;
-  }
-}
+.card h3 { font-size: 1.35rem; margin-bottom: 0.35rem; }
+.org { color: var(--accent-deep); font-weight: 600; font-size: 0.96rem; margin-bottom: 0.7rem; }
+.desc { color: var(--ink-soft); font-size: 0.98rem; line-height: 1.65; }
 </style>

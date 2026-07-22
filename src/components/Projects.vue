@@ -1,463 +1,335 @@
 <template>
-  <section id="projects" class="projects">
+  <section id="writing" class="writing section">
     <div class="container">
-      <h2 class="section-title">Featured Projects</h2>
-      <div class="projects-grid">
-        <div v-for="project in projects" :key="project.id" 
-          :class="['project-card', { 'featured-card': project.tags.includes('Featured'), 'clickable': project.link }]"
-          @click="project.link && openProject(project.link)">
-          <div class="project-header">
-            <div class="project-icon">{{ project.icon }}</div>
-            <div class="project-meta">
-              <span v-for="tag in project.tags" :key="tag" :class="['project-tag', tag.toLowerCase()]">{{ tag }}</span>
+      <div class="head" v-reveal>
+        <span class="eyebrow">The archive</span>
+        <h2 class="section-title">Writing &amp; projects</h2>
+        <p class="section-lead">
+          Long-form notes on the things I build — the problems, the decisions, and the
+          code behind them. Filter by what you're curious about.
+        </p>
+      </div>
+
+      <div class="filters" v-reveal>
+        <button
+          v-for="c in categories"
+          :key="c"
+          class="filter"
+          :class="{ active: active === c }"
+          @click="active = c"
+        >{{ c }}</button>
+      </div>
+
+      <div class="grid">
+        <article
+          v-for="(post, i) in filtered"
+          :key="post.title"
+          class="post"
+          v-reveal="{ delay: (i % 3) * 90 }"
+        >
+          <a
+            class="post-link"
+            :href="post.link || '#newsletter'"
+            :target="post.link && !isInternal(post.link) ? '_blank' : undefined"
+            :rel="post.link && !isInternal(post.link) ? 'noopener' : undefined"
+            @click="onClick(post, $event)"
+          >
+            <div class="thumb" :style="{ background: post.grad }">
+              <img :src="post.img" :alt="post.title" loading="lazy" @error="hide" />
+              <span v-if="post.flagship" class="thumb-flag">★ Flagship</span>
+              <span class="thumb-cat">{{ post.category }}</span>
             </div>
-          </div>
-          <h3 class="project-title">{{ project.title }}</h3>
-          <p class="project-description">{{ project.description }}</p>
-          <ul class="project-features">
-            <li v-for="(feature, index) in project.features" :key="index">{{ feature }}</li>
-          </ul>
-          <div class="project-tech">
-            <span v-for="tech in project.tech" :key="tech" class="tech-badge">{{ tech }}</span>
-          </div>
-          <a v-if="project.link" :href="project.link" target="_blank" rel="noopener" class="project-link">
-            Visit Website ↗
+            <div class="post-body">
+              <div class="post-meta">
+                <span>{{ post.date }}</span>
+                <span class="dot">·</span>
+                <span>{{ post.read }}</span>
+              </div>
+              <h3 class="post-title">{{ post.title }}</h3>
+              <p class="post-excerpt">{{ post.excerpt }}</p>
+              <span class="post-read ulink">
+                {{ post.cta || (post.link ? 'Read more' : 'Notes coming soon') }} →
+              </span>
+            </div>
           </a>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-const openProject = (link: string) => {
-  window.open(link, '_blank')
+import { ref, computed } from 'vue'
+
+const hide = (e: Event) => {
+  ;(e.target as HTMLElement).style.display = 'none'
 }
 
-const projects = [
+type Post = {
+  title: string
+  category: string
+  date: string
+  read: string
+  excerpt: string
+  img: string
+  grad: string
+  link?: string
+  flagship?: boolean
+  cta?: string
+}
+
+const isInternal = (l?: string) => !!l && l.startsWith('#')
+const onClick = (post: Post, e: MouseEvent) => {
+  if (isInternal(post.link)) {
+    e.preventDefault()
+    document.querySelector(post.link as string)?.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
+const u = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=80`
+
+const posts: Post[] = [
   {
-    id: 0,
-    title: "Comrades WiFi",
-    icon: "🌐",
-    description: "A beautiful, modern Vue.js frontend for Comrades WiFi - Kenya's premier telecommunication system with AI-powered chatbot assistance, entertainment hub, and responsive design.",
-    features: [
-      "Full-stack platform with real user base",
-      "10k+ active customers across 50+ areas",
-      "AI-powered chatbot (OpenRouter/Llama 3.2)",
-      "Entertainment hub with movies & sports",
-      "99.9% uptime production system",
-      "24/7 customer support infrastructure",
-    ],
-    tags: ["Live", "Full-Stack", "Featured"],
-    tech: ["Vue 3", "Vite", "OpenAI API", "TMDB API"],
-    link: "https://comradeswifi.net"
+    title: 'Comrades WiFi — an ISP platform, in development',
+    category: 'Web',
+    date: 'Jul 2025',
+    read: '8 min read',
+    excerpt: 'My flagship: an ISP platform for Kenya with an AI support chatbot and a Vue 3 front end. Actively being built and refined — a work in progress.',
+    img: u('1558494949-ef010cbdcc31'),
+    grad: 'linear-gradient(135deg,#1d3a8a,#0ea5e9)',
+    link: 'https://comradeswifi.net',
+    flagship: true,
   },
   {
-    id: 1,
-    title: "Customer Service Ticketing System",
-    icon: "🎫",
-    description: "Full desktop application for managing customer support tickets and records with real-time dashboard analytics.",
-    features: [
-      "Add, view, search, and delete tickets",
-      "Comprehensive customer record management",
-      "Dashboard with statistics (open, closed, feedback)",
-      "Data validation and error handling",
-    ],
-    tags: ["Desktop"],
-    tech: ["Java", "Swing", "ArrayList"],
+    title: 'Breach — a browser game you can play right now',
+    category: 'Games',
+    date: 'Jul 2025',
+    read: 'Playable',
+    excerpt: 'I build games too. Breach is a hacker-vs-firewall grid duel against an AI version of me — jump in and try to reach the core. More games coming to my Play Store channel soon.',
+    img: u('1511512578047-dfb367046420'),
+    grad: 'linear-gradient(135deg,#312e81,#7c3aed)',
+    link: '#play',
+    cta: 'Play now',
   },
   {
-    id: 2,
-    title: "VisionTrack",
-    icon: "👁️",
-    description: "Real-time object detection mobile application designed to assist users with environment awareness using AI.",
-    features: [
-      "Real-time object detection via camera",
-      "Flutter responsive UI",
-      "Python YOLOv8 backend integration",
-      "Low-latency processing pipeline",
-    ],
-    tags: ["Mobile", "AI"],
-    tech: ["Flutter", "Python", "YOLOv8"],
+    title: 'Real-time object detection with YOLOv8 and Flutter',
+    category: 'AI / ML',
+    date: 'Jun 2025',
+    read: '9 min read',
+    excerpt: 'Wiring a low-latency computer-vision pipeline to a responsive mobile UI so the camera can describe the world in real time.',
+    img: u('1526374965328-7f61d4dc18c5'),
+    grad: 'linear-gradient(135deg,#4c1d95,#7c3aed)',
   },
   {
-    id: 3,
-    title: "Church Management System",
-    icon: "⛪",
-    description: "Comprehensive mobile app for managing church operations, roles, and engagement at Ark Youth Church.",
-    features: [
-      "Role-based access control (Admin, Pastor, Shepherd, etc.)",
-      "Real-time attendance tracking",
-      "Department & squad management",
-      "Email authentication system",
-    ],
-    tags: ["Mobile", "Production"],
-    tech: ["Flutter", "Firebase"],
+    title: 'Turning a YOLOv8 model into a scalable Flask API',
+    category: 'AI / ML',
+    date: 'May 2025',
+    read: '7 min read',
+    excerpt: 'From a research notebook to a REST backend: batching, image handling, and keeping response times honest under load.',
+    img: u('1518770660439-4636190af475'),
+    grad: 'linear-gradient(135deg,#7f1d1d,#ef4444)',
   },
   {
-    id: 4,
-    title: "Transportation Logistics System",
-    icon: "🚚",
-    description: "Backend system for managing transportation logistics with robust data processing and validation.",
-    features: [
-      "Regex-based ID validation",
-      "Modular menu systems",
-      "Structured data processing",
-      "Real-time input handling",
-    ],
-    tags: ["Backend"],
-    tech: ["Python", "Regex", "Data Processing"],
+    title: 'A live rental platform, shipped on Render',
+    category: 'Web',
+    date: 'May 2025',
+    read: '6 min read',
+    excerpt: 'Building and deploying a property-management front end with clean flows, an admin panel, and a responsive layout.',
+    img: u('1488590528505-98d2b5aba04b'),
+    grad: 'linear-gradient(135deg,#064e3b,#10b981)',
+    link: 'https://cynthia-frontend.onrender.com',
   },
   {
-    id: 5,
-    title: "Rental Management Website",
-    icon: "🏠",
-    description: "Live rental management website for browsing and managing rental properties with a modern UI and smooth user flows.",
-    features: [
-      "Live deployed frontend on Render",
-      "Property browsing and listing UI",
-      "Admin access panel experience",
-      "Responsive design for mobile and desktop",
-    ],
-    tags: ["Web", "Full-Stack", "Live"],
-    tech: ["Vue 3", "Vite", "Render"],
-    link: "https://cynthia-frontend.onrender.com"
+    title: 'Content moderation & analytics: my final-year project',
+    category: 'AI / ML',
+    date: 'Apr 2025',
+    read: '11 min read',
+    excerpt: 'A capstone in real-time monitoring — analysing content, visualising signals, and supporting multiple languages.',
+    img: u('1451187580459-43490279c0fa'),
+    grad: 'linear-gradient(135deg,#701a75,#ec4899)',
+    link: 'https://github.com/owenz4040/final-year-project',
   },
   {
-    id: 6,
-    title: "Tourism Fund Website Redesign",
-    icon: "✈️",
-    description: "Complete redesign project focusing on modern design, SEO optimization, and performance improvements.",
-    features: [
-      "Modern, responsive UI/UX",
-      "SEO optimization",
-      "Performance improvements",
-      "Project planning & costing",
-    ],
-    tags: ["Web", "Design"],
-    tech: ["Vue.js", "SEO", "UX Design"],
+    title: 'Building a church management system in Flutter',
+    category: 'Mobile',
+    date: 'Mar 2025',
+    read: '8 min read',
+    excerpt: 'Role-based access, real-time attendance and email auth for a real congregation — and the data model that held it together.',
+    img: u('1512941937669-90a1b58e7e9c'),
+    grad: 'linear-gradient(135deg,#7c2d12,#f59e0b)',
   },
   {
-    id: 7,
-    title: "Library Management System",
-    icon: "📚",
-    description: "Desktop-based library system for managing book records and borrowing/return operations.",
-    features: [
-      "Complete book record management",
-      "Borrowing and return tracking",
-      "Library inventory system",
-      "Member management",
-    ],
-    tags: ["Desktop"],
-    tech: ["Visual Basic", "Database"],
+    title: 'Designing an accessible voice assistant',
+    category: 'Mobile',
+    date: 'Feb 2025',
+    read: '6 min read',
+    excerpt: 'Speech-to-text navigation built accessibility-first, so visually impaired users can move through an app by voice.',
+    img: u('1504384308090-c894fdcc538d'),
+    grad: 'linear-gradient(135deg,#134e4a,#14b8a6)',
   },
   {
-    id: 8,
-    title: "Voice Assistant System",
-    icon: "🎤",
-    description: "Accessibility-focused voice assistant for visually impaired users with speech-to-text navigation.",
-    features: [
-      "Voice command processing",
-      "Speech-to-text navigation",
-      "Accessibility-first design",
-      "Mobile integration",
-    ],
-    tags: ["Mobile", "Accessibility"],
-    tech: ["Flutter", "TTS/STT", "Voice"],
+    title: 'A routing & navigation backend with TomTom',
+    category: 'Security & Systems',
+    date: 'Jan 2025',
+    read: '7 min read',
+    excerpt: 'Real-time tracking, route calculation and distance measurement — the server work behind turn-by-turn voice navigation.',
+    img: u('1558494949-ef010cbdcc31'),
+    grad: 'linear-gradient(135deg,#1e293b,#64748b)',
+    link: 'https://github.com/owenz4040/Rental_System',
   },
   {
-    id: 9,
-    title: "YOLOv8 Flask Backend",
-    icon: "🔧",
-    description: "Converted object detection system into scalable Flask API backend for real-time processing.",
-    features: [
-      "REST API endpoints",
-      "Real-time image processing",
-      "Flask framework integration",
-      "Mobile app connectivity",
-    ],
-    tags: ["Backend", "AI"],
-    tech: ["Flask", "Python", "YOLOv8", "API"],
+    title: 'Regex-driven logistics processing in Python',
+    category: 'Security & Systems',
+    date: 'Nov 2024',
+    read: '5 min read',
+    excerpt: 'Validating IDs, structuring records and building modular menus for a transportation-logistics backend.',
+    img: u('1461749280684-dccba630e2f6'),
+    grad: 'linear-gradient(135deg,#312e81,#6366f1)',
   },
   {
-    id: 10,
-    title: "Routing & Navigation Backend",
-    icon: "🗺️",
-    description: "Advanced location services backend with real-time tracking, route calculation, and voice navigation.",
-    features: [
-      "Real-time location tracking",
-      "Route calculation engine",
-      "Distance measurement",
-      "Voice navigation integration",
-      "Saved locations management",
-    ],
-    tags: ["Backend", "Location Services"],
-    tech: ["MongoDB", "TomTom API", "Real-time"],
-    link: "https://github.com/owenz4040/Rental_System"
+    title: 'Lessons from a Java Swing ticketing system',
+    category: 'Web',
+    date: 'Sep 2024',
+    read: '5 min read',
+    excerpt: 'A desktop app for support tickets and customer records, with a live dashboard of open, closed and feedback stats.',
+    img: u('1519389950473-47ba0277781c'),
+    grad: 'linear-gradient(135deg,#1e3a8a,#3b82f6)',
   },
-  {
-    id: 11,
-    title: "Vue.js Login Page",
-    icon: "🔐",
-    description: "Clean and modern authentication interface built with Vue.js for user account access.",
-    features: [
-      "Email/password authentication",
-      "Form validation",
-      "Responsive design",
-      "Vue.js framework",
-    ],
-    tags: ["Web"],
-    tech: ["Vue.js"],
-    link: "https://github.com/owenz4040/vuejs-project"
-  },
-  {
-    id: 12,
-    title: "Final Year Project",
-    icon: "🎓",
-    description: "Comprehensive final year project featuring content moderation, analytics, and real-time monitoring systems.",
-    features: [
-      "Content analysis & moderation",
-      "Real-time monitoring dashboard",
-      "Analytics visualization",
-      "Multi-language support",
-    ],
-    tags: ["Academic", "Full-Stack"],
-    tech: ["JavaScript", "Python", "MongoDB"],
-    link: "https://github.com/owenz4040/final-year-project"
-  },
-  {
-    id: 13,
-    title: "Portfolio & GitHub Pages",
-    icon: "👨‍💻",
-    description: "Personal portfolio website hosted on GitHub Pages with custom domain integration (colinowen.me).",
-    features: [
-      "Custom domain setup",
-      "GitHub Pages hosting",
-      "Responsive portfolio layout",
-      "Project showcase",
-    ],
-    tags: ["Web", "Portfolio"],
-    tech: ["GitHub Pages", "Custom Domain"],
-    link: "https://github.com/owenz4040/owenz4040.github.io"
-  },
-];
+]
+
+const categories = ['All', 'Web', 'Games', 'AI / ML', 'Mobile', 'Security & Systems']
+const active = ref('All')
+const filtered = computed(() =>
+  active.value === 'All' ? posts : posts.filter((p) => p.category === active.value)
+)
 </script>
 
 <style scoped>
-.projects {
-  padding: 6rem 2rem;
-  background: linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
-}
+.writing { background: var(--paper-2); }
 
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-}
+.head { margin-bottom: 1.8rem; }
 
-.section-title {
-  font-size: 2.8rem;
-  font-weight: 900;
-  text-align: center;
-  margin-bottom: 4rem;
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -1px;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 2.5rem;
-}
-
-.project-card {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(107, 95, 255, 0.08) 100%);
-  border: 1.5px solid var(--accent-border);
-  border-radius: 1.2rem;
-  padding: 2.2rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.filters {
   display: flex;
-  flex-direction: column;
-  backdrop-filter: blur(10px);
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.6rem;
+}
+.filter {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 0.5rem 1.1rem;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: color 0.25s var(--ease), background 0.25s var(--ease),
+    border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.filter:hover { transform: translateY(-2px); border-color: var(--ink); }
+.filter.active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 8px 18px rgba(214, 72, 43, 0.24);
 }
 
-.project-card:hover {
-  border-color: var(--primary-cyan);
-  transform: translateY(-12px);
-  box-shadow: 0 30px 80px rgba(0, 212, 255, 0.25);
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.6rem;
 }
 
-.project-card.featured-card {
-  grid-column: 1 / -1;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.12) 0%, rgba(107, 95, 255, 0.12) 100%);
-  border-color: var(--primary-cyan);
+.post {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.post:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.post-link { display: flex; flex-direction: column; height: 100%; }
+
+.thumb {
   position: relative;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
 }
-
-.project-card.featured-card::before {
-  content: '';
+.thumb img {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--accent-gradient);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease);
 }
-
-.project-card.featured-card:hover {
-  border-color: var(--primary-blue);
-  box-shadow: 0 40px 100px rgba(0, 212, 255, 0.35);
-}
-
-.project-card.clickable {
-  cursor: pointer;
-}
-
-.project-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1.8rem;
-}
-
-.project-icon {
-  font-size: 2.8rem;
-}
-
-.project-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  justify-content: flex-end;
-}
-
-.project-tag {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(107, 95, 255, 0.15) 100%);
-  color: var(--primary-cyan);
-  padding: 0.35rem 0.9rem;
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
+.post:hover .thumb img { transform: scale(1.07); }
+.thumb-flag {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  font-family: var(--sans);
+  font-size: 0.7rem;
   font-weight: 700;
-  border: 1px solid rgba(0, 212, 255, 0.2);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent);
+  padding: 0.32rem 0.72rem;
+  border-radius: 100px;
+  box-shadow: var(--shadow-md);
 }
 
-.project-tag.featured {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(107, 95, 255, 0.2) 100%);
-  color: var(--primary-cyan);
-  border-color: var(--accent-border);
+.thumb-cat {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 0.85rem;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(251, 250, 247, 0.92);
+  padding: 0.32rem 0.72rem;
+  border-radius: 100px;
+  backdrop-filter: blur(4px);
 }
 
-.project-tag.live {
-  background: rgba(255, 107, 107, 0.15);
-  color: var(--primary-red);
-  border-color: rgba(255, 107, 107, 0.3);
-  animation: glowPulse 2s ease-in-out infinite;
+.post-body {
+  padding: 1.4rem 1.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
-
-.project-title {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin: 0 0 0.8rem 0;
-  letter-spacing: -0.5px;
-}
-
-.project-description {
-  color: var(--text-tertiary);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  margin-bottom: 1.3rem;
-}
-
-.project-features {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.8rem 0;
-  flex-grow: 1;
-}
-
-.project-features li {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--muted);
   margin-bottom: 0.7rem;
-  padding-left: 1.8rem;
-  position: relative;
+}
+.dot { color: var(--line); }
+.post-title {
+  font-size: 1.32rem;
+  line-height: 1.2;
+  margin-bottom: 0.7rem;
+}
+.post-excerpt {
+  font-size: 0.96rem;
   line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: 1.2rem;
+  flex: 1;
 }
+.post-read { color: var(--accent); font-size: 0.95rem; align-self: flex-start; }
 
-.project-features li:before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: var(--primary-cyan);
-  font-weight: bold;
-  letter-spacing: 0.5px;
-}
-
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: auto;
-}
-
-.tech-badge {
-  background: linear-gradient(135deg, rgba(107, 95, 255, 0.2) 0%, rgba(0, 212, 255, 0.2) 100%);
-  color: var(--primary-purple);
-  padding: 0.4rem 0.95rem;
-  border-radius: 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  border: 1px solid rgba(107, 95, 255, 0.3);
-  letter-spacing: 0.3px;
-}
-
-.project-link {
-  margin-top: 1.8rem;
-  padding: 0.9rem 1.8rem;
-  background: var(--accent-gradient);
-  color: white;
-  text-decoration: none;
-  border-radius: 0.7rem;
-  font-weight: 800;
-  font-size: 0.9rem;
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-block;
-  box-shadow: 0 12px 30px rgba(0, 212, 255, 0.3);
-  letter-spacing: 0.5px;
-}
-
-.project-link:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 50px rgba(0, 212, 255, 0.5);
-}
-
-@media (max-width: 768px) {
-  .projects {
-    padding: 4rem 1.5rem;
-  }
-
-  .section-title {
-    font-size: 2.2rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
-  }
-
-  .project-card {
-    padding: 1.8rem;
-  }
-
-  .project-card.featured-card {
-    grid-column: 1 / -1;
-  }
+@media (max-width: 520px) {
+  .grid { grid-template-columns: 1fr; }
 }
 </style>
